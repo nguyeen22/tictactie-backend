@@ -27,4 +27,9 @@ public class PlayerService implements IPlayerService {
         return playerRepository.findByUserNameAndPassword(email, password);
     }
 
+    @Override
+    public Player getPlayer(Long id) {
+        return playerRepository.findOneById(id);
+    }
+
 }

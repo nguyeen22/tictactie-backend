@@ -1,13 +1,9 @@
 package com.example.controller;
 
-import com.example.dto.LoginDTO;
 import com.example.dto.RegistrationDTO;
-import com.example.entity.Player;
-import com.example.security.PasswordEncoder;
 import com.example.service.IPlayerService;
 import com.example.service.IRegistrationService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 

@@ -14,7 +14,7 @@ public class MoveDTO {
     @NotNull
     private int boardRow;
     @NotNull
-    private Long playerID;
+    private Long playerId;
     @NotNull
-    private Long gameID;
+    private Long gameId;
 }

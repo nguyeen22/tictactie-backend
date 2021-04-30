@@ -23,6 +23,7 @@ import java.util.Date;
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
     private Long id;
 
     @ManyToOne

@@ -24,7 +24,6 @@ public class GameService implements IGameService {
     public GameDTO createNewGame(GameDTO gameDTO) {
         Game newGameEntity = gameConverter.toEntity(gameDTO);
         newGameEntity.setFirstPlayerId(playerRepository.findOneById(gameDTO.getFirstPlayerId()));
-
         newGameEntity.setGameStatus(gameDTO.getGameType() == GameType.COMPUTER ? GameStatus.IN_PROGRESS :
                     GameStatus.WAITS_FOR_PLAYER);
         newGameEntity.setFirstPlayerPieceCode(gameDTO.getPiece());
@@ -35,7 +34,6 @@ public class GameService implements IGameService {
     public Game updateGameStatus(Game game, GameStatus gameStatus) {
         Game g = getGame(game.getId());
         g.setGameStatus(gameStatus);
-
         return g;
     }
 
