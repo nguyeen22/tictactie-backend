@@ -29,7 +29,7 @@ public class Player implements UserDetails {
     private String email;
 
     private Boolean locked = false;
-    private Boolean enabled = false;
+    private Boolean enabled = true;
 
     public Player(String userName, String password, String email) {
         this.userName = userName;

@@ -21,9 +21,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 public class Game {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private Long id;
 
     @ManyToOne

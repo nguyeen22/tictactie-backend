@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/auth")
-public class AuthController{
+public class AuthController {
     private final DaoAuthenticationProvider daoAuthenticationProvider;
     private final IAuthenticationService authenticationService;
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
@@ -41,17 +41,35 @@ public class AuthController{
                 Authentication authentication = daoAuthenticationProvider.authenticate(new UsernamePasswordAuthenticationToken(requestLoginDTO.getUserName(), requestLoginDTO.getPassword()));
                 if (authentication.isAuthenticated()) {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
+                    logger.info("Login Successful as " + playerDetails.getUsername());
                     result = new ResponseData("200", "Login Success");
                 }
-            }else {
+            }
+            else {
                 logger.info("User Not Found");
                 result = new ResponseData("500", "User Not Exist");
             }
-        }else {
+        }
+        else {
             logger.error("Missing Login Body Request");
         }
         return result;
     }
+
+    @PostMapping("/logout")
+    public ResponseData logout(HttpServletRequest p_Request, HttpServletResponse p_Response) {
+        ResponseData result = new ResponseData("500", "Logout Failed");
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth != null){
+            authenticationService.logout(p_Request, p_Response, auth);
+            logger.info("Logout Successful");
+            result = new ResponseData("200", "Logout Success");
+        }else {
+            logger.error("Logout Failed");
+        }
+        return result;
+    }
+
 
 
 }

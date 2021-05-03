@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.converter.MoveConverter;
 import com.example.dto.MoveDTO;
 import com.example.entity.Game;
 import com.example.entity.Move;
@@ -23,6 +24,7 @@ public class MoveController {
     private final IMoveService moveService;
     private final IGameService gameService;
     private final HttpSession httpSession;
+    private final MoveConverter moveConverter;
 
     private static final Logger logger = LoggerFactory.getLogger(MoveController.class);
 
@@ -31,7 +33,7 @@ public class MoveController {
         httpSession.setAttribute("gameId", moveDTO.getGameId());
         Long gameId = (Long) httpSession.getAttribute("gameId");
         logger.info("move to insert: Column: " + moveDTO.getBoardColumn() + " Row: " + moveDTO.getBoardRow());
-        MoveDTO move = moveService.createNewMove(gameService.getGame(gameId), moveDTO);
+            MoveDTO move = moveService.createNewMove(gameService.getGame(gameId), moveDTO);
         Game game = gameService.getGame(gameId);
         gameService.updateGameStatus(gameService.getGame(gameId), moveService.checkCurrentGameStatus(game));
         return move;

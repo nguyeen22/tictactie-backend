@@ -20,18 +20,5 @@ public class PlayerController {
     private  final BCryptPasswordEncoder bCryptPasswordEncoder;
     private static final Logger logger = LoggerFactory.getLogger(GameController.class);
 
-    @PostMapping("login")
-    public Player loginUser(@RequestBody Player user) {
-        String tempUserMame = user.getUsername();
-       String tempPassword = bCryptPasswordEncoder.encode(user.getPassword());
-     Player playerObj = null;
-       if(tempPassword != null && tempUserMame != null){
-            playerObj = playerService.fetchPlayerByUserNameAndPassword(tempUserMame, tempPassword);
-       }
-       if (playerObj == null) {
-           throw new IllegalStateException("Bad Credentials");
-     }
-       return playerObj;
-   }
 
 }
